@@ -30,10 +30,15 @@ if __name__ == "__main__":
 			Xt = Xt / np.tile(np.sum(Xt,axis=1).reshape(-1,1), [1, Xt.shape[1]])
 			Xt = scipy.stats.zscore(Xt);
 			
-			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,'raw')
-			print('Acc: {}'.format(Acc1))
-			
+			#Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,'raw')
+			#print('EasyTL(c) Acc: {:.1f} %'.format(Acc1*100))
+			Acc1 = 0
+            
 			Acc2, _ = EasyTL(Xs,Ys,Xt,Yt)
-			print('Acc: %f'.format(Acc2))
+			print('EasyTL Acc: {:.1f} %'.format(Acc2*100))
 			
 			list_acc.append([Acc1,Acc2])
+	acc = np.array(list_acc)
+	avg = np.mean(acc, axis=0)
+	print('EasyTL(c) AVG Acc: {:.1f} %'.format(avg[0]*100))
+	print('EasyTL AVG Acc: {:.1f} %'.format(avg[1]*100))
