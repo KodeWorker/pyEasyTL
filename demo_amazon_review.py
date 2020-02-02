@@ -34,10 +34,9 @@ if __name__ == "__main__":
 			Xt[np.isnan(Xt)] = 0
             
 			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,'raw')
-			print('EasyTL(c) Acc: {:.1f} %'.format(Acc1*100))
-            
 			Acc2, _ = EasyTL(Xs,Ys,Xt,Yt)
-			print('EasyTL Acc: {:.1f} %'.format(Acc2*100))
+            
+			print('EasyTL(c) Acc: {:.1f} % || EasyTL Acc: {:.1f} %'.format(Acc1*100, Acc2*100))
 			list_acc.append([Acc1,Acc2])
             
 	acc = np.array(list_acc)

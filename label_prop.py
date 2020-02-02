@@ -30,9 +30,6 @@ def label_prop(C, nt, Dct, lp="linear"):
             A = all_zeros
         else:
             A = np.vstack((A, all_zeros))
-			
-#    lb_12 = np.zeros([intcon, 1])
-#    ub_12 = np.ones([intcon, 1])
     
     if lp == "binary":
         print("not implemented yet!")
