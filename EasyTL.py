@@ -20,11 +20,12 @@ def get_class_center(Xs,Ys,Xt,dist):
         elif dist == "euclidean":
             Dct_c = np.sqrt(np.nansum((mean_i - Xt)**2, axis=1))
         elif dist == "sqeuc":
-            print("not implemented yet!")
+            Dct_c = np.nansum((mean_i - Xt)**2, axis=1)
         elif dist == "cosine":
             print("not implemented yet!")
         elif dist == "rbf":
-            print("not implemented yet!")
+            Dct_c = np.nansum((mean_i - Xt)**2, axis=1)
+            Dct_c = np.exp(- Dct_c / 1);
         if len(Dct) == 0:
             Dct = Dct_c.reshape(-1, 1)
         else:
