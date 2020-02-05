@@ -1,7 +1,44 @@
 import numpy as np
 from CORAL_map import CORAL_map
 from label_prop import label_prop
+from scipy.spatial.distance import mahalanobis
 
+def get_cosine_dist(A, B):
+    B = np.reshape(B, (1, -1))
+    
+    if A.shape[1] == 1:
+        A = np.hstack((A, np.zeros((A.shape[0], 1))))
+        B = np.hstack((B, np.zeros((B.shape[0], 1))))
+    
+    aa = np.sum(np.multiply(A, A), axis=1).reshape(-1, 1)
+    bb = np.sum(np.multiply(B, B), axis=1).reshape(-1, 1)
+    ab = A @ B.T
+    
+    # to avoid NaN for zero norm
+    aa[aa==0] = 1
+    bb[bb==0] = 1
+    
+    D = np.real(np.ones((A.shape[0], B.shape[0])) - np.multiply((1/np.sqrt(np.kron(aa, bb.T))), ab))
+    
+    return D
+    
+def get_ma_dist(A, B):
+    Y = A.copy()
+    X = B.copy()
+    
+    S = np.cov(X.T)
+    try:
+        SI = np.linalg.inv(S)
+    except:
+        print("Singular Matrix: using np.linalg.pinv")
+        SI = np.linalg.pinv(S)
+    mu = np.mean(X, axis=0)
+    
+    diff = Y - mu
+    Dct_c = np.diag(diff @ SI @ diff.T)
+    
+    return Dct_c
+    
 def get_class_center(Xs,Ys,Xt,dist):
 	
     source_class_center = np.array([])
@@ -16,16 +53,17 @@ def get_class_center(Xs,Ys,Xt,dist):
             source_class_center = np.hstack((source_class_center, mean_i.reshape(-1, 1)))
 		
         if dist == "ma":
-            print("not implemented yet!")
+            Dct_c = get_ma_dist(X_i, Xt)
         elif dist == "euclidean":
             Dct_c = np.sqrt(np.nansum((mean_i - Xt)**2, axis=1))
         elif dist == "sqeuc":
             Dct_c = np.nansum((mean_i - Xt)**2, axis=1)
         elif dist == "cosine":
-            print("not implemented yet!")
+            Dct_c = get_cosine_dist(Xt, mean_i)
         elif dist == "rbf":
             Dct_c = np.nansum((mean_i - Xt)**2, axis=1)
             Dct_c = np.exp(- Dct_c / 1);
+        
         if len(Dct) == 0:
             Dct = Dct_c.reshape(-1, 1)
         else:

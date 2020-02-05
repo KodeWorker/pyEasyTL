@@ -4,7 +4,7 @@ import numpy as np
 from EasyTL import EasyTL
 
 if __name__ == "__main__":
-	datadir = "data/text/amazon_review_400/"
+	datadir = r"D:\Datasets\EasyTL\amazon_review"
 	str_domain = ["books", "dvd", "elec", "kitchen"]
 	list_acc = []
 	
@@ -15,10 +15,10 @@ if __name__ == "__main__":
 			
 			print("{} - {}".format(str_domain[i], str_domain[j]))
 			
-			mat1 = scipy.io.loadmat(datadir + "{}_400.mat".format(str_domain[i]))
+			mat1 = scipy.io.loadmat(datadir + "/{}_400.mat".format(str_domain[i]))
 			Xs = mat1["fts"]
 			Ys = mat1["labels"]
-			mat2 = scipy.io.loadmat(datadir + "{}_400.mat".format(str_domain[j]))
+			mat2 = scipy.io.loadmat(datadir + "/{}_400.mat".format(str_domain[j]))
 			Xt = mat2["fts"]
 			Yt = mat2["labels"]
 			
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 			Xs[np.isnan(Xs)] = 0
 			Xt[np.isnan(Xt)] = 0
             
-			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,'raw')
+			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,"raw", "ma")
 			Acc2, _ = EasyTL(Xs,Ys,Xt,Yt)
             
 			print('EasyTL(c) Acc: {:.1f} % || EasyTL Acc: {:.1f} %'.format(Acc1*100, Acc2*100))

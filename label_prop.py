@@ -17,7 +17,7 @@ def label_prop(C, nt, Dct, lp="linear"):
     for i in range(nt):
         Aeq[i, i*C:(i+1)*C] = 1;
 	
-    D_vec = Dct.flatten()
+    D_vec = np.reshape(Dct, (1, intcon))
     CC = np.asarray(D_vec, dtype=np.double)
 	
     A = np.array([])
