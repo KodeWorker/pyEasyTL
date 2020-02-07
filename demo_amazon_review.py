@@ -33,7 +33,7 @@ if __name__ == "__main__":
 			Xs[np.isnan(Xs)] = 0
 			Xt[np.isnan(Xt)] = 0
             
-			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,"raw", "ma")
+			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,"pca")
 			Acc2, _ = EasyTL(Xs,Ys,Xt,Yt)
             
 			print('EasyTL(c) Acc: {:.1f} % || EasyTL Acc: {:.1f} %'.format(Acc1*100, Acc2*100))

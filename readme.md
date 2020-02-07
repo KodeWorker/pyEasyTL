@@ -13,3 +13,7 @@ The MATLAB source code is on this [Repo](https://github.com/jindongwang/transfer
 - **2020/02/03** more distance measurement in get_class_center
 - **2020/01/31** CORAL_map still has some issue. (fixed)
 - **2020/01/31** The primitive results of Amazon dataset show that we'v successfully implemented the EasyTL(c).
+
+# Reference:
+1. Easy Transfer Learning By Exploiting Intra-domain Structures
+2. Geodesic Flow Kernel for Unsupervised Domain Adaptation

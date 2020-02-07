@@ -1,7 +1,6 @@
 import numpy as np
-from CORAL_map import CORAL_map
+from intra_alignment import CORAL_map, GFK_map, PCA_map
 from label_prop import label_prop
-from scipy.spatial.distance import mahalanobis
 
 def get_cosine_dist(A, B):
     B = np.reshape(B, (1, -1))
@@ -53,7 +52,7 @@ def get_class_center(Xs,Ys,Xt,dist):
             source_class_center = np.hstack((source_class_center, mean_i.reshape(-1, 1)))
 		
         if dist == "ma":
-            Dct_c = get_ma_dist(X_i, Xt)
+            Dct_c = get_ma_dist(Xt, X_i)
         elif dist == "euclidean":
             Dct_c = np.sqrt(np.nansum((mean_i - Xt)**2, axis=1))
         elif dist == "sqeuc":
@@ -102,8 +101,10 @@ def EasyTL(Xs,Ys,Xt,Yt,intra_align="coral",dist="euclidean",lp="linear"):
 		print('EasyTL using raw feature...')
 	elif intra_align == "pca":
 		print('EasyTL using PCA...')
+		Xs, Xt = PCA_map(Xs, Xt)
 	elif intra_align == "gfk":
 		print('EasyTL using GFK...')
+		Xs, Xt = GFK_map(Xs, Xt)
 	elif intra_align == "coral":
 		print('EasyTL using CORAL...')
 		Xs = CORAL_map(Xs, Xt)
