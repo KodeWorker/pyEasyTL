@@ -6,7 +6,7 @@ from EasyTL import EasyTL
 
 if __name__ == "__main__":
     
-    datadir = r"D:\KelvinWu\Datasets\EasyTL\surf"
+    datadir = r"D:\Datasets\EasyTL\surf"
     str_domain = [ 'Caltech10', 'amazon', 'webcam', 'dslr' ]
     list_acc = []
     

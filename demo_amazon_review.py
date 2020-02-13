@@ -2,6 +2,7 @@ import scipy.io
 import scipy.stats
 import numpy as np
 from EasyTL import EasyTL
+import time
 
 if __name__ == "__main__":
 	datadir = r"D:\Datasets\EasyTL\amazon_review"
@@ -33,8 +34,13 @@ if __name__ == "__main__":
 			Xs[np.isnan(Xs)] = 0
 			Xt[np.isnan(Xt)] = 0
             
-			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,"pca")
+			t0 = time.time()
+			Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,"raw")
+			t1 = time.time()
+			print("Time Elapsed: {:.2f} sec".format(t1 - t0))
 			Acc2, _ = EasyTL(Xs,Ys,Xt,Yt)
+			t2 = time.time()
+			print("Time Elapsed: {:.2f} sec".format(t2 - t1))
             
 			print('EasyTL(c) Acc: {:.1f} % || EasyTL Acc: {:.1f} %'.format(Acc1*100, Acc2*100))
 			list_acc.append([Acc1,Acc2])
