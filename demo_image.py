@@ -37,9 +37,6 @@ if __name__ == "__main__":
             Xt = df2.values[:, :-1]
             Yt = df2.values[:, -1] + 1
             
-            Ff = Xs.copy()
-            Xx = np.tile(np.sum(Xs,axis=1).reshape(-1,1), [1, Xs.shape[1]])
-            
             Xs = Xs / np.tile(np.sum(Xs,axis=1).reshape(-1,1), [1, Xs.shape[1]])
             Xs = scipy.stats.mstats.zscore(Xs)
             Xt = Xt / np.tile(np.sum(Xt,axis=1).reshape(-1,1), [1, Xt.shape[1]])
