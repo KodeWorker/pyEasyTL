@@ -1,6 +1,7 @@
 import numpy as np
 from intra_alignment import CORAL_map, GFK_map, PCA_map
-from label_prop import label_prop
+# from label_prop import label_prop
+from label_prop_v2 import label_prop
 
 def get_cosine_dist(A, B):
     B = np.reshape(B, (1, -1))

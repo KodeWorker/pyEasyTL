@@ -15,6 +15,8 @@ if __name__ == "__main__":
             if i == j:
                 continue
             
+            print("{} - {}".format(str_domain[i], str_domain[j]))
+            
             mat1 = scipy.io.loadmat(datadir + "/{}_SURF_L10.mat".format(str_domain[i]))
             Xs = mat1["fts"]
             Ys = mat1["labels"]

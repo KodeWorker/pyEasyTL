@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.optimize import linprog
+import pulp
 
 def label_prop(C, nt, Dct, lp="linear"):
     
@@ -37,6 +38,6 @@ def label_prop(C, nt, Dct, lp="linear"):
         res = linprog(CC,A,B,Aeq,Beq, bounds=tuple((0, 1) for _ in range(intcon)))
     Mct_vec = res.get("x")[0:C*nt]
     Mcj = Mct_vec.reshape((C,nt), order="F").T
-    
+  
     return Mcj
 	
