@@ -24,7 +24,7 @@ if __name__ == "__main__":
                 continue
             
             print("{} - {}".format(str_domains[i], str_domains[j]))
-            src = str_domains[j]
+            src = str_domains[i]
             tar = str_domains[j]
             x1file = "{}_{}.csv".format(src, src)
             x2file = "{}_{}.csv".format(src, tar)
@@ -37,10 +37,13 @@ if __name__ == "__main__":
             Xt = df2.values[:, :-1]
             Yt = df2.values[:, -1] + 1
             
+            Ff = Xs.copy()
+            Xx = np.tile(np.sum(Xs,axis=1).reshape(-1,1), [1, Xs.shape[1]])
+            
             Xs = Xs / np.tile(np.sum(Xs,axis=1).reshape(-1,1), [1, Xs.shape[1]])
-            Xs = scipy.stats.mstats.zscore(Xs);
+            Xs = scipy.stats.mstats.zscore(Xs)
             Xt = Xt / np.tile(np.sum(Xt,axis=1).reshape(-1,1), [1, Xt.shape[1]])
-            Xt = scipy.stats.mstats.zscore(Xt);
+            Xt = scipy.stats.mstats.zscore(Xt)
             
             t0 = time.time()
             Acc1, _ = EasyTL(Xs,Ys,Xt,Yt,'raw')

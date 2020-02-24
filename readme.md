@@ -13,7 +13,7 @@ The MATLAB source code is on this [Repo](https://github.com/jindongwang/transfer
 
 ## Dev Log
 - **2020/02/24** write label_prop_v2.py using PuLP
-- **2020/02/05** implement get_ma_dist and get_cosine_dist in EasyTL.py (still have some issues)
+- **2020/02/05** implement get_ma_dist and get_cosine_dist in EasyTL.py (fixed)
 - **2020/02/03** more distance measurement in get_class_center
 - **2020/01/31** CORAL_map still has some issue. (fixed)
 - **2020/01/31** The primitive results of Amazon dataset show that we'v successfully implemented the EasyTL(c).
