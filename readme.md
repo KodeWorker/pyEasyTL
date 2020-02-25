@@ -7,11 +7,10 @@ The MATLAB source code is on this [Repo](https://github.com/jindongwang/transfer
 
 - scipy.optimize.linprog is slower than PuLP
 - M^(-1/2) = (M^(-1))^(1/2) = scipy.linalg.sqrtm(np.linalg.inv(np.array(cov_src)))
-- PuLP 2.0 type conversion problems (can't convert complex to float), the workaround is shown below:
-    - line 599 in pulp.py: float(self.constant) -> float(abs(self.constant))
-    - line 1492 in pulp.py: cobj[v] -> abs(cobj[v])
+- scipy.linalg.sqrtm will introduce complex number [#3549](https://github.com/scipy/scipy/issues/3549) and cause our Dct parameter to be a complex array.
 
 ## Dev Log
+- **2020/02/25** PuLP type conversion problems (can't convert complex to float) is fixed
 - **2020/02/24** write label_prop_v2.py using PuLP
 - **2020/02/05** implement get_ma_dist and get_cosine_dist in EasyTL.py (fixed)
 - **2020/02/03** more distance measurement in get_class_center

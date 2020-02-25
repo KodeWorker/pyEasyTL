@@ -10,6 +10,8 @@ def label_prop(C, nt, Dct, lp="linear"):
 #  lp     :    Type of linear programming: linear (default) | binary
 #Outputs:
 #  Mcj    :    all M_ct in matrix form, m * C
+    
+    Dct = abs(Dct)
     model = pulp.LpProblem("Cost minimising problem", pulp.LpMinimize)
     Mcj = pulp.LpVariable.dicts("Probability",
                                 ((i, j) for i in range(C) for j in range(nt)),

@@ -14,7 +14,7 @@ if __name__ == "__main__":
         datadir = r"D:\Datasets\EasyTL\imageCLEF_resnet50"
     elif img_dataset == 'office-home':
         str_domains = ['Art', 'Clipart', 'Product', 'RealWorld']
-        #datadir = r"D:\Datasets\EasyTL\imageCLEF_resnet50"
+        datadir = r"D:\Datasets\EasyTL\officehome_resnet50"
     
     list_acc = []
     
