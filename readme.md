@@ -1,7 +1,7 @@
 # pyEasyTL
 
 ## Introduction
-This [project](https://github.com/KodeWorker/pyEasyTL) is the reimplementation of EasyTL in Python.
+This [project](https://github.com/KodeWorker/pyEasyTL) is the implementation of EasyTL in Python.
 The EasyTL paper on the [website](http://transferlearning.xyz/code/traditional/EasyTL/) show this domain adaptation method is intuitive and parametric-free.
 The MATLAB source code is on this [Repo](https://github.com/jindongwang/transferlearning/tree/master/code/traditional/EasyTL).
 
