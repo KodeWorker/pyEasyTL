@@ -9,6 +9,10 @@ The MATLAB source code is on this [Repo](https://github.com/jindongwang/transfer
 - M^(-1/2) = (M^(-1))^(1/2) = scipy.linalg.sqrtm(np.linalg.inv(np.array(cov_src)))
 - scipy.linalg.sqrtm will introduce complex number [#3549](https://github.com/scipy/scipy/issues/3549) and cause our Dct parameter to be a complex array.
 
+## To Do
+- PCA_map in intra_alignment.py
+- GFK_map in intra_alignment.py
+
 ## Dev Log
 - **2020/02/25** PuLP type conversion problems (can't convert complex to float) is fixed
 - **2020/02/24** write label_prop_v2.py using PuLP

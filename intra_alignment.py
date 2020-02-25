@@ -15,12 +15,12 @@ def getAngle(Ps, Pt, DD):
     dim = Pt.shape[1]
     QPt = Q.T @ Pt
     A, B = QPt[:dim, :], QPt[dim:, :]
-    U,V,X,C,S = gsvd(A, B)  
+    U,V,X,C,S = gsvd(A, B)
     alpha = np.zeros([1, DD])
     for i in range(DD):
         alpha[0][i] = math.sin(np.real(math.acos(C[i][i]*math.pi/180)))
-    return alpha
     
+    return alpha
 
 def getGFKDim(Xs, Xt):
     Pss = PCA().fit(Xs).components_.T
@@ -62,8 +62,5 @@ def CORAL_map(Xs,Xt):
     A_coral = np.dot(Cs, Ct)
     
     Xs_new = np.dot(Ds, A_coral)
-    
-    # check for complex number
-    #!
-    
+        
     return Xs_new

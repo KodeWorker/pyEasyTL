@@ -91,30 +91,32 @@ def EasyTL(Xs,Ys,Xt,Yt,intra_align="coral",dist="euclidean",lp="linear"):
 # Easy Transfer Learning By Exploiting Intra-domain Structures.
 # IEEE International Conference on Multimedia & Expo (ICME) 2019.
 
-	C = len(np.unique(Ys))
-	if C > np.max(Ys):
-		Ys += 1
-		Yt += 1
+    C = len(np.unique(Ys))
+    if C > np.max(Ys):
+        Ys += 1
+        Yt += 1
 	
-	m = len(Yt)
+    m = len(Yt)
 	
-	if intra_align == "raw":
-		print('EasyTL using raw feature...')
-	elif intra_align == "pca":
-		print('EasyTL using PCA...')
-		Xs, Xt = PCA_map(Xs, Xt)
-	elif intra_align == "gfk":
-		print('EasyTL using GFK...')
-		Xs, Xt = GFK_map(Xs, Xt)
-	elif intra_align == "coral":
-		print('EasyTL using CORAL...')
-		Xs = CORAL_map(Xs, Xt)
+    if intra_align == "raw":
+        print('EasyTL using raw feature...')
+    elif intra_align == "pca":
+        print('EasyTL using PCA...')
+        print('Not implemented yet, using raw feature')
+		#Xs, Xt = PCA_map(Xs, Xt)
+    elif intra_align == "gfk":
+        print('EasyTL using GFK...')
+        print('Not implemented yet, using raw feature')
+        #Xs, Xt = GFK_map(Xs, Xt)
+    elif intra_align == "coral":
+        print('EasyTL using CORAL...')
+        Xs = CORAL_map(Xs, Xt)
 	
-	_, Dct = get_class_center(Xs,Ys,Xt,dist)
-	print('Start intra-domain programming...')
-	Mcj = label_prop(C,m,Dct,lp)
-	y_pred = np.argmax(Mcj, axis=1) + 1
-	acc = np.mean(y_pred == Yt.flatten());
+    _, Dct = get_class_center(Xs,Ys,Xt,dist)
+    print('Start intra-domain programming...')
+    Mcj = label_prop(C,m,Dct,lp)
+    y_pred = np.argmax(Mcj, axis=1) + 1
+    acc = np.mean(y_pred == Yt.flatten());
 
-	return acc, y_pred
+    return acc, y_pred
 	
